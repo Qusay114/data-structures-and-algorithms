@@ -19,7 +19,8 @@ Becomes:
 ------------------------------------------------------------------------------------------------ */
 
 function transformToLis(obj){
-  // Solution code here...
+  const results = Object.keys(obj).map(key => `<li>${key}: ${obj[key]}</li>`);
+  return results ;
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -33,7 +34,9 @@ For example, count(5, [[1, 3, 5, 7, 9], [5, 5, 5], [1, 2, 3]]) returns 4.
 ------------------------------------------------------------------------------------------------ */
 
 const count = (target, input) => {
-  // Solution code here...
+  let countNum = 0;
+  input.forEach(arr => arr.forEach(num => num===target ? countNum++ : 0 ));
+  return countNum ;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -47,7 +50,9 @@ For example, [[1, 2, 3, 4, 5], [6, 7, 2, 4, 5, 7], [9, 2, 3, 6,]] returns 66.
 ------------------------------------------------------------------------------------------------ */
 
 const totalSum = (input) => {
-  // Solution code here...
+  let sum = 0;
+  input.forEach(arr => arr.forEach(num => sum+=num ));
+  return sum ;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -63,7 +68,9 @@ For example, [ [0,2,5,4], [2,4,10], [] ] should return [ [1, 32], [1024], [] ].
 ------------------------------------------------------------------------------------------------ */
 
 const divisibleByFiveTwoToThePower = (input) => {
-  // Solution code here...
+  const localArr = input.map(arr => arr.filter(num => num%5===0&&(typeof num !== 'string') ? 1:0)) ;
+  const results = localArr.map(arr => arr.map(num => Math.pow(2,num)));
+  return results ;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -129,7 +136,15 @@ let starWarsData = [{
 }];
 
 let findMaleAndFemale = (data) => {
-  // Solution code here...
+  const names = data.reduce((strNames , value , index ) => {
+    if(value.gender === 'female' || value.gender === 'male')
+      if(strNames == '')
+        strNames += value.name ;
+      else
+        strNames += ' and ' + value.name ;
+    return strNames ;
+  }, '');
+  return names ;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -139,7 +154,12 @@ Write a function named findShortest that, given the Star Wars data from Challeng
 ------------------------------------------------------------------------------------------------ */
 
 let findShortest = (data) => {
-  // Solution code here...
+  const shortestChar = data.reduce((shortChar , char , index) => {
+    if(Number(shortChar.height) > Number(char.height))
+      shortChar = char ;
+    return shortChar ;
+  });
+  return shortestChar.name ;
 };
 
 /* ------------------------------------------------------------------------------------------------
