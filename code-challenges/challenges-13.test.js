@@ -7,13 +7,14 @@ Write a function named longestString that takes in an array of strings and retur
 ------------------------------------------------------------------------------------------------ */
 
 const longestString = (arr) => {
-  let longest = 0 ;
+  let longest = -1 ;
   arr.reduce((longestStr , str , index) => {
     if(longestStr.length < str.length)
     {
       longest = index ;
       longestStr = str ;
     }
+    return longestStr ;
 
   } , '');
   return longest ;
@@ -28,7 +29,8 @@ For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['t', 
 ------------------------------------------------------------------------------------------------ */
 
 const firstLetters = (arr) => {
-  // Solution code here...
+  const results = arr.map(str => str[0]);
+  return results ;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -40,7 +42,8 @@ For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['this
 ------------------------------------------------------------------------------------------------ */
 
 const findHappiness = (arr) => {
-  // Solution code here...
+  const results = arr.filter(str => str.match(/:\)/) ) ;
+  return results ;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -52,7 +55,8 @@ For example, (123) 456-7890 returns 1234567890
 ------------------------------------------------------------------------------------------------ */
 
 const standardizePhoneNumbers = (arr) => {
-  // Solution code here...
+  const nums = arr.map(phoneNum => phoneNum.match(/[0-9]/g).join(''));
+  return nums ;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -64,7 +68,8 @@ For example, 'abcdefg' returns 'bdf'
 ------------------------------------------------------------------------------------------------ */
 
 const onlyOddChars = (str) => {
-  // Solution code here...
+  const result = (str.split('')).filter((char , index) => index%2 !== 0 ? true:false).join('');
+  return result ;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -74,7 +79,7 @@ Write a function named allHappy that takes in an array of strings and returns a 
 ------------------------------------------------------------------------------------------------ */
 
 const allHappy = (arr) => {
-  // Solution code here...
+  return findHappiness(arr).length === arr.length ? true:false ;
 };
 
 /* ------------------------------------------------------------------------------------------------
