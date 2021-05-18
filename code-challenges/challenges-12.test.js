@@ -68,6 +68,7 @@ Note: if you ever need to validate an email using a regex in practice, the Inter
 ------------------------------------------------------------------------------------------------ */
 
 const validateEmail = (email) => {
+  if(!email.match(/@/) || !email.match(/\./)) return false ;
   if(email.match(/[^a-zA-Z@.]/g) || email.match(/@/).length > 1) return false ;
   const localArr = email.split(/(@)/);
   if(localArr[2].match(/\./g).length > 1 || localArr[2].match(/[0-9]/) ) return false ;
@@ -97,7 +98,10 @@ Return either true or false.
 ------------------------------------------------------------------------------------------------ */
 
 const validatePhoneNumber = (phoneNumber) => {
-  // Solution code here...
+  const result = phoneNumber.match(/\(?([0-9]{3})\)?[-.●]?[\s]?([0-9]{3})[-.●]?[\s]?([0-9]{4})/g);
+  if(!result) return false ;
+  if(result[0].length !== phoneNumber.length ) return false ;
+  return result[0].match(/\(/) ? (result[0].match(/\)/)? true : false) : true ;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -197,7 +201,7 @@ describe('Testing challenge 5', () => {
   });
 });
 
-xdescribe('Testing challenge 6', () => {
+describe('Testing challenge 6', () => {
   test('It should match the acceptable phone number formats', () => {
     expect(validatePhoneNumber('(555) 555-5555')).toBeTruthy();
     expect(validatePhoneNumber('555 555-5555')).toBeTruthy();
