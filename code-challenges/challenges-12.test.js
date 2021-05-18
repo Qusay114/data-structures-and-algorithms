@@ -68,12 +68,8 @@ Note: if you ever need to validate an email using a regex in practice, the Inter
 ------------------------------------------------------------------------------------------------ */
 
 const validateEmail = (email) => {
-  if(!email.match(/@/) || !email.match(/\./)) return false ;
-  if(email.match(/[^a-zA-Z@.]/g) || email.match(/@/).length > 1) return false ;
-  const localArr = email.split(/(@)/);
-  if(localArr[2].match(/\./g).length > 1 || localArr[2].match(/[0-9]/) ) return false ;
-  const localArr2 = localArr[2].split(/\./);
-  return localArr2[1]==='net' || localArr2[1]==='com' || localArr2[1]==='org' ? true : false ;
+  const pattern = /^\w+\.?\w+@\w+\.(net|com|org)$/ ;
+  return pattern.test(email);
 };
 
 /* ------------------------------------------------------------------------------------------------
